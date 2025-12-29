@@ -10,11 +10,12 @@ import { useCameraPermissions } from 'expo-camera';
 import * as Location from 'expo-location';
 import { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth'; // Import the useAuth hook
+import { useTranslation } from 'react-i18next';
 
 export default function HomeScreen() {
   const router = useRouter();
   const { authState } = useAuth(); // Get authState from the useAuth hook
-
+  const { t } = useTranslation();
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function HomeScreen() {
         {/* <Image source={require("@/assets/images/gold.png")} style={styles.image}/> */}
 
         <View style={{ alignItems: 'center' }}>
-          <ThemedText>只需15分鐘 讓你的黃金變現金</ThemedText>
+          <ThemedText>{t('fifteenMinsGold2Cash')}</ThemedText>
           <ThemedText type="title" style={{ color: Colors.light_gold }}>HK$4,926</ThemedText>
           <ThemedText>估值 (4.26克)</ThemedText>
         </View>
@@ -71,7 +72,7 @@ export default function HomeScreen() {
           />
         </View>
       </View>
-      <View><ThemedText>version 4</ThemedText></View>
+      <View><ThemedText>version 4.1</ThemedText></View>
     </Container>
   );
 }

@@ -27,7 +27,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
               <Header />
               {/* <ThemedButton title={'使用黃金ATM機購買黃金'} variant='secondary' iconName='scan-outline' onPress={ () => { router.navigate('/payment_pages/buy_gold_screen') } } /> */}
               <ThemedButton title={'使用黃金回收機'} variant='secondary' iconName='scan-outline' onPress={ () => {router.navigate('/scan-qrcode')} } />
-              <ThemedButton title="附近回收機" variant="secondary" iconName="location-outline" onPress={ () => {router.navigate('/coming_soon')} }/>
+              <ThemedButton title={'使用黃金販賣機'} variant='secondary' iconName='scan-outline' onPress={ () => {router.navigate('/pos/scan_qrcode_pos')} } />
+              <ThemedButton title={'附近回收機'} variant="secondary" iconName="location-outline" onPress={ () => {router.navigate('/coming_soon')} }/>
               <StyledTextInput icon="search" placeholder="Search" />
               <View style={account_styles.container}>
                   <View style={account_styles.tabsContainer}>

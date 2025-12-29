@@ -8,6 +8,8 @@ import { AuthProvider } from '@/context/AuthContext';
 import { useAuth } from '@/hooks/useAuth';
 import PrivacyPolicyScreen from './legal_pages/privacy_policy';
 import { StripeProvider } from '@stripe/stripe-react-native';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n';
 
 const Layout = () => {
   const { authState } = useAuth();
@@ -15,7 +17,7 @@ const Layout = () => {
   return (
     <Stack>
       <Stack.Protected guard={authState?.token !== null}>
-        
+
         <Stack.Screen name="account" options={{ headerShown: false }} />
       </Stack.Protected>
       <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -23,6 +25,10 @@ const Layout = () => {
       <Stack.Screen name="gold-recycling-machine-location" options={{ headerShown: false }} />
       <Stack.Screen name="scan-qrcode" options={{ headerShown: false }} />
       <Stack.Screen name="bind-machine" options={{ headerShown: false }} />
+
+      <Stack.Screen name="pos/bind_pos" options={{ headerShown: false }} />
+      <Stack.Screen name="pos/scan_qrcode_pos" options={{ headerShown: false }} />
+
       <Stack.Screen name="registration" options={{ headerShown: false }} />
       {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
 
@@ -51,16 +57,17 @@ export default function RootLayout() {
   }
 
   return (
+    <I18nextProvider i18n={i18n}>
       <AuthProvider>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <StripeProvider 
-            publishableKey='pk_test_51RvEm5HnHX8FGu5Q8VSeetwbBD58ggOGi759JsUnQC0FZ5YEJEQyewFUcJBGq1ebzCV3CZRabN3Cw7Z0BiTta01Q00O6O2wlhJ'
-          >
-            <Layout />
-          </StripeProvider>
-          
-          <StatusBar style="auto" />
+            <StripeProvider 
+              publishableKey='pk_test_51RvEm5HnHX8FGu5Q8VSeetwbBD58ggOGi759JsUnQC0FZ5YEJEQyewFUcJBGq1ebzCV3CZRabN3Cw7Z0BiTta01Q00O6O2wlhJ'
+            >
+                <Layout />
+            </StripeProvider>
+            <StatusBar style="auto" />
         </ThemeProvider>
       </AuthProvider>
+    </I18nextProvider>
   );
 }
